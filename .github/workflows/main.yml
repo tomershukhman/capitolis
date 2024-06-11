@@ -81,4 +81,4 @@ jobs:
       run: |
         ls -l
         sed -i'' -e 's|image: tomershukhman/capitolis:.*|image: tomershukhman/capitolis:${{ github.sha }}|' manifests/deployment.yaml
-        cat deployment.yaml
+        cat manifests/deployment.yaml
