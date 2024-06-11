@@ -76,7 +76,7 @@ jobs:
         tags: tomershukhman/capitolis:${{ github.sha }}
 
     - name: Logout from Docker Hub
-      run: docker logou
+      run: docker logout
 
 
 
