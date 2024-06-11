@@ -8,8 +8,9 @@ pipeline {
     stages {
         stage('Install dependencies') {
             steps {
-                sh 'pip install -r requirements.txt'
-            }
+                sh 'pip install --user -r requirements.txt'
+                // Adding the local bin directory to PATH
+                sh 'export PATH=$HOME/.local/bin:$PATH'            }
         }
         stage('Test') {
             steps {
