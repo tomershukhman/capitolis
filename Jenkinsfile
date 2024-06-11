@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'docker:latest'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
     environment {
         DOCKER_REGISTRY = 'your-docker-registry-url'
         DOCKER_IMAGE = 'your-image-name'
@@ -7,7 +12,7 @@ pipeline {
     stages {
         stage('Login to Docker Registry') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'd6b19ad5-7a53-4eb9-b35b-b4ead0069d02', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'your-credentials-id', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh 'echo $DOCKER_PASSWORD | docker login $DOCKER_REGISTRY -u $DOCKER_USERNAME --password-stdin'
                 }
             }
