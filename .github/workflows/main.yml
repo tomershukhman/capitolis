@@ -79,5 +79,5 @@ jobs:
 
     - name: Update Kubernetes deployment
       run: |
-        sed -i 's|image: tomershukhman/capitolis:.*|image: tomershukhman/capitolis:${{ github.sha }}|' deployment.yaml
+        sed -i 's|image: tomershukhman/capitolis:.*|image: tomershukhman/capitolis:${{ github.sha }}|' manifests/deployment.yaml
         cat deployment.yaml
