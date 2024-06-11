@@ -1,9 +1,34 @@
 pipeline {
     agent any
+    environment {
+        DOCKER_REGISTRY = 'your-docker-registry-url'
+        DOCKER_IMAGE = 'your-image-name'
+    }
     stages {
-        stage('Build') {
+        stage('Login to Docker Registry') {
             steps {
-                sh 'echo "Hello World"'
+                withCredentials([usernamePassword(credentialsId: 'd6b19ad5-7a53-4eb9-b35b-b4ead0069d02', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh 'echo $DOCKER_PASSWORD | docker login $DOCKER_REGISTRY -u $DOCKER_USERNAME --password-stdin'
+                }
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    def imageTag = "${BUILD_NUMBER}"
+                    sh "docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${imageTag} ."
+                }
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    def imageTag = "${BUILD_NUMBER}"
+                    sh """
+                    docker tag ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${imageTag} ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${imageTag}
+                    docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${imageTag}
+                    """
+                }
             }
         }
     }
