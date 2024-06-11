@@ -37,6 +37,7 @@ jobs:
         name: test-results
         path: results.xml
 
+
   build_and_push_docker:
     runs-on: ubuntu-latest
     needs: test
@@ -58,16 +59,24 @@ jobs:
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
+      with:
+        driver-opts: network=host
+
+    - name: Create and use a new builder
+      run: |
+        docker buildx create --use --name mybuilder
+        docker buildx inspect --bootstrap
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v4
       with:
         context: .
         push: true
+        platforms: linux/amd64,linux/arm64
         tags: tomershukhman/capitolis:${{ github.sha }}
 
     - name: Logout from Docker Hub
-      run: docker logout
+      run: docker logou
 
 
 
