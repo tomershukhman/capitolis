@@ -19,4 +19,6 @@ spec:
         image: tomershukhman/capitolis:c54153803d0fa412c7bacc35133cc94804e467c7
         ports:
         - containerPort: 80
-
+        envFrom:
+        - secretRef:
+            name: app-cred
