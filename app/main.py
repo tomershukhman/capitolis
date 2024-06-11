@@ -59,7 +59,7 @@ def get_current_weather(lat, lon, weather_api_key):
                             detail=f"Error fetching weather data: {response.status_code}")
 
 
-@app.get("/current_weather/{city}")
+@app.get("/weatherapi/current_weather/{city}")
 def fetch_current_weather(city: str):
     """
     Endpoint to fetch current weather data for a city.
