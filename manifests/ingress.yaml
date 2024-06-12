@@ -8,8 +8,8 @@ spec:
   - host: wheatherapi # Replace with your domain
     http:
       paths:
-      - path: /weatherapi/
-        pathType: Prefix
+      - path: /*
+        pathType: ImplementationSpecific
         backend:
           service:
             name: fastapi-service

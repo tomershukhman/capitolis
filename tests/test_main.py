@@ -60,7 +60,7 @@ def mock_get_current_weather(lat, lon, api_key):
 def test_get_lat_lon(mock_env, mocker):
     mocker.patch('app.main.get_lat_lon', side_effect=mock_get_lat_lon)
     mocker.patch('app.main.get_current_weather', side_effect=mock_get_current_weather)
-    response = client.get("/weatherapi/current_weather/Mountain%20View")
+    response = client.get("/current_weather/Mountain%20View")
     assert response.status_code == 200
     data = response.json()
     assert "coord" in data
@@ -69,10 +69,10 @@ def test_get_lat_lon(mock_env, mocker):
 
 def test_invalid_city(mock_env, mocker):
     mocker.patch('app.main.get_lat_lon', side_effect=mock_get_lat_lon)
-    response = client.get("/weatherapi/current_weather/InvalidCityName")
+    response = client.get("/current_weather/InvalidCityName")
     assert response.status_code == 400
 
 def test_internal_server_error(mock_env, mocker):
     mocker.patch('app.main.get_lat_lon', side_effect=HTTPException(status_code=500, detail="Geocoding service failure"))
-    response = client.get("/weatherapi/current_weather/Mountain%20View")
+    response = client.get("/current_weather/Mountain%20View")
     assert response.status_code == 500

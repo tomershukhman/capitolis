@@ -61,7 +61,7 @@ def get_current_weather(lat, lon, weather_api_key):
                             detail=f"Error fetching weather data: {response.status_code}")
 
 
-@app.get("/weatherapi/current_weather/{city}")
+@app.get("/current_weather/{city}")
 def fetch_current_weather(city: str):
     """
     Endpoint to fetch current weather data for a city.
@@ -85,7 +85,7 @@ def fetch_current_weather(city: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/weatherapi/build")
+@app.get("/build")
 def get_build_number():
     """
     Endpoint to fetch the build number.
