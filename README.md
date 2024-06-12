@@ -28,7 +28,7 @@ This project builds and deploys a FastAPI application that fetches weather infor
 
 2. **Install dependencies:**
    ```bash
-   pip install -r requirements.txt
+   pip install -r dependencies/requirements.txt
    ```
 
 3. **Run the application:**
