@@ -3,12 +3,13 @@ kind: Ingress
 metadata:
   name: fastapi-ingress
 spec:
+  ingressClassName: nginx
   rules:
   - host: localhost # Replace with your domain
     http:
       paths:
-      - path: /weatherapi/(.*)
-        pathType: ImplementationSpecific
+      - path: /weatherapi/
+        pathType: Prefix
         backend:
           service:
             name: fastapi-service
