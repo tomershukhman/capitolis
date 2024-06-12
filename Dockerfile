@@ -1,5 +1,5 @@
 #
-FROM python:3.9
+FROM tomershukhman/weatherapp-base:latest
 
 #
 WORKDIR /code
