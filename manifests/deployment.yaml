@@ -5,7 +5,7 @@ metadata:
   labels:
     app: fastapi-app
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: fastapi-app
@@ -19,9 +19,6 @@ spec:
         image: tomershukhman/capitolis:15bf0059b6eb910a872c07661c1486d8693adb38
         ports:
         - containerPort: 80
-        env:
-        - name: BUILD_NUMBER
-          value: "10"
         envFrom:
         - secretRef:
             name: app-cred
