@@ -9,6 +9,8 @@ load_dotenv()
 # Configuration
 GEOCODE_API_KEY = os.getenv("GEOCODE_API_KEY")
 WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
+BUILD_NUMBER = os.getenv("BUILD_NUMBER", "Not Available")
+
 
 app = FastAPI()
 
@@ -83,4 +85,12 @@ def fetch_current_weather(city: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# Run the app with `uvicorn main:app --reload`
+@app.get("/weatherapi/build")
+def get_build_number():
+    """
+    Endpoint to fetch the build number.
+
+    Returns:
+    - build_number (str): The build number of the application.
+    """
+    return {"build_number": BUILD_NUMBER}
