@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: fastapi-app
-        image: tomershukhman/capitolis:05896b5437fb6ced8ba7515ead15841b70a9b91e
+        image: tomershukhman/capitolis:7204f35b4619bf98b284118822a8d83dc6c8a6d1
         ports:
         - containerPort: 80
         envFrom:
