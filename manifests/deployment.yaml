@@ -19,6 +19,9 @@ spec:
         image: tomershukhman/capitolis:9923e44e99ea34cbe9997debbb5add10f314a501
         ports:
         - containerPort: 80
+        env:
+        - name: BUILD_NUMBER
+          value: "10"
         envFrom:
         - secretRef:
             name: app-cred

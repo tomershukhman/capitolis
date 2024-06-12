@@ -4,6 +4,12 @@ FROM python:3.9
 #
 WORKDIR /code
 
+# Set build argument
+ARG BUILD_NUMBER
+
+# Set environment variable
+ENV BUILD_NUMBER=${BUILD_NUMBER}
+
 #
 COPY ./requirements.txt /code/requirements.txt
 
