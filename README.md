@@ -30,13 +30,18 @@ This project builds and deploys a FastAPI application that fetches weather infor
    ```bash
    pip install -r dependencies/requirements.txt
    ```
+    if you update the requirements file, please run:
+   ```bash
+   ./dependencies/build_push.sh
+   ```
+   this script will build and push an updated base image for the app image to use.
 
 3. **Run the application:**
     ```bash
     fastapi run fastapi dev app/main.py 
    ```
 
-1. **Run tests:**
+4. **Run tests:**
    ```bash
    pytest tests
    ```
